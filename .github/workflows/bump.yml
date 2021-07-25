@@ -1,6 +1,7 @@
 name: Autobump
 on:
-  workflow_dispatch:
+  schedule:
+    - cron:  '0 * * * *'
 jobs:
   bump-zig:
     runs-on: ubuntu-latest
