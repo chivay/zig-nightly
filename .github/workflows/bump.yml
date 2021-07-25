@@ -22,5 +22,6 @@ jobs:
          SHA256=$(jq -r ".sha256" current.json)
          sed -i "s/version = \".*\";/version = \"${COMMIT}\";/" flake.nix
          sed -i "s@hash = \".*\";@hash = \"sha256-${SHA256}\";@" flake.nix
-      - name: Push new commit
-        uses: stefanzweifel/git-auto-commit-action@v4
+      - run: git diff
+      #      - name: Push new commit
+      #        uses: stefanzweifel/git-auto-commit-action@v4
