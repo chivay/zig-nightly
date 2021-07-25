@@ -1,0 +1,21 @@
+name: Autobump
+on:
+  workflow_dispatch:
+jobs:
+  bump-zig:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - uses: cachix/install-nix-action@v13
+        with:
+          extra_nix_config: |
+            experimental-features = nix-command flakes
+      - nix profile install nixpkgs#jq
+      - run: nix run nixpkgs#nix-prefetch-github ziglang zig > current.json
+      - run: COMMIT=$(jq -r ".rev" current.json)
+      - run: sed -i "s/version = \".*\";/version = \"${COMMIT}\";/" flake.nix
+      - run: SHA256=$(jq -r ".sha256" current.json)
+      - run: sed -i "s/hash = \".*\";/hash = \"sha256-${SHA256}\";/" flake.nix
+      - name: Push new commit
+        uses: stefanzweifel/git-auto-commit-action@v4
