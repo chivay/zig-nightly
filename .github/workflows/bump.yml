@@ -13,10 +13,8 @@ jobs:
           install_options: '--tarball-url-prefix https://nixos-nix-install-tests.cachix.org/serve'
           extra_nix_config: |
             experimental-features = nix-command flakes ca-references
-      - run: nix profile install nixpkgs#jq
-      - run: nix registry list
-      - run: nix-channel --list
-      - run: nix run nixpkgs#nix-prefetch-github ziglang zig > current.json
+      - run: nix profile install nixpkgs#jq nixpkgs#nix-prefetch-github
+      - run: nix-prefetch-github ziglang zig > current.json
       - run: |
          COMMIT=$(jq -r ".rev" current.json)
          SHA256=$(jq -r ".sha256" current.json)
