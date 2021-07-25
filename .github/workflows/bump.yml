@@ -18,6 +18,7 @@ jobs:
       - run: nix profile install nixpkgs#jq nixpkgs#nix-prefetch-github
       - run: nix-prefetch-github ziglang zig > current.json
       - run: |
+         set -x
          COMMIT=$(jq -r ".rev" current.json)
          SHA256=$(jq -r ".sha256" current.json)
          sed -i "s/version = \".*\";/version = \"${COMMIT}\";/" flake.nix
