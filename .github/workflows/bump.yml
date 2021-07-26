@@ -1,5 +1,6 @@
 name: Autobump
 on:
+  workflow_dispatch:
   schedule:
     - cron:  '0 * * * *'
 jobs:
@@ -26,3 +27,8 @@ jobs:
          rm current.json
       - name: Push new commit
         uses: stefanzweifel/git-auto-commit-action@v4
+      - uses: cachix/cachix-action@v10
+        with:
+          name: zig-nightly
+          authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+      - run: nix build .#zig-nightly
