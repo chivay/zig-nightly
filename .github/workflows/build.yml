@@ -3,7 +3,7 @@ on:
   push:
     branches: [ master ]
 jobs:
-  bump-zig:
+  build-zig:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
