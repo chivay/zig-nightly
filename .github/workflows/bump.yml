@@ -26,3 +26,5 @@ jobs:
          rm current.json
       - name: Push new commit
         uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+            token: ${{ secrets.CHVBOT_PAT }}
