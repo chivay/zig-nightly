@@ -5,9 +5,11 @@
 
   outputs = { self, nixpkgs, flake-utils }:
     flake-utils.lib.eachDefaultSystem (system:
-      let pkgs = nixpkgs.legacyPackages.${system};
-          llvmPackages = pkgs.llvmPackages_12;
-      in rec {
+      let
+        pkgs = nixpkgs.legacyPackages.${system};
+        llvmPackages = pkgs.llvmPackages_12;
+      in
+      rec {
         packages = flake-utils.lib.flattenTree {
           zig-nightly = llvmPackages.stdenv.mkDerivation rec {
             pname = "zig";
