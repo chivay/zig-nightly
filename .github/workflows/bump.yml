@@ -8,6 +8,8 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v2
+        with:
+            token: ${{ secrets.CHVBOT_PAT }}
       - uses: cachix/install-nix-action@v13
         with:
           install_url: https://nixos-nix-install-tests.cachix.org/serve/i6laym9jw3wg9mw6ncyrk6gjx4l34vvx/install
@@ -26,5 +28,3 @@ jobs:
          rm current.json
       - name: Push new commit
         uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-            token: ${{ secrets.CHVBOT_PAT }}
