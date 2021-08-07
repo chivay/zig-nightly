@@ -1,6 +1,6 @@
 name: Autobump
 on:
-  workflow_displatch:
+  workflow_dispatch:
   schedule:
     - cron:  '0 0 * * *'
 jobs:
