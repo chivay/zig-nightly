@@ -1,6 +1,6 @@
 # Zig nightly
 
-Freshly baked Zig. Updated every night. 
+Freshly baked Zig. Updated every night, hopefully.
 
 ## How to
 
