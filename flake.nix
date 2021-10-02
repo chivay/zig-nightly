@@ -7,7 +7,7 @@
     flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
-        llvmPackages = pkgs.llvmPackages_12;
+        llvmPackages = pkgs.llvmPackages_13;
       in
       rec {
         packages = flake-utils.lib.flattenTree {
