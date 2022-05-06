@@ -13,13 +13,13 @@
         packages = flake-utils.lib.flattenTree {
           zig-nightly = llvmPackages.stdenv.mkDerivation rec {
             pname = "zig";
-            version = "a839ccc15322e63b13083da8f44959113a5e3313";
+            version = "13d1798ea0c2665f09508ac505259e761f8b4e22";
 
             src = pkgs.fetchFromGitHub {
               owner = "ziglang";
               repo = pname;
               rev = version;
-              hash = "sha256-U6GNjQUBwqXB5F8Ry8Bl0S9msl2H8511HNd9/LbHesw=";
+              hash = "sha256-m0G9AqnLIf5aI/IuEgcZmyKuskz9EuV3+El3sCiSu+U=";
             };
 
             nativeBuildInputs = [ pkgs.cmake llvmPackages.llvm.dev ];
