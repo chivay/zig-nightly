@@ -14,13 +14,13 @@
         packages = flake-utils.lib.flattenTree {
           zig-nightly = llvmPackages.stdenv.mkDerivation rec {
             pname = "zig";
-            version = "85a3f9b0544c1b90a77ce26f99f9fc26116d756b";
+            version = "4d7f5a1917f569506682bbb6ee5af672ab1fd8e8";
 
             src = pkgs.fetchFromGitHub {
               owner = "ziglang";
               repo = pname;
               rev = version;
-              hash = "sha256-z3wPzEn3pGk7OUgzes403cIgCDS56qlcSVXXNJPu6tc=";
+              hash = "sha256-8nokhpYyx6yJcFFHRN42fyMxnFzqEy9CA9NcNKuei+8=";
             };
 
             # https://github.com/ziglang/zig/issues/12069 workaround
