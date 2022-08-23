@@ -27,5 +27,6 @@ jobs:
          sed -i "s/version = \".*\";/version = \"${COMMIT}\";/" flake.nix
          sed -i "s@hash = \".*\";@hash = \"sha256-${SHA256}\";@" flake.nix
          rm current.json
+      - run: ./update_index.sh
       - name: Push new commit
         uses: stefanzweifel/git-auto-commit-action@v4

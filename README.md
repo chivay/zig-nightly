@@ -27,4 +27,5 @@ Add new input
 Use package:
 ```
   zig = zig-nightly.packages.${system}.zig-nightly;
+  zig-bin = zig-nightly.packages.${system}.zig-nightly-bin;
 ```

@@ -9,9 +9,31 @@
       let
         pkgs = nixpkgs.legacyPackages.${system};
         llvmPackages = pkgs.llvmPackages_14;
+        index = builtins.fromJSON (builtins.readFile ./index.json);
+        bundle = builtins.fetchurl {
+            url = index.master.${system}.tarball;
+            sha256 = index.master.${system}.shasum;
+        };
+
       in
       rec {
         packages = flake-utils.lib.flattenTree {
+          zig-nightly-bin = pkgs.stdenv.mkDerivation {
+            pname = "zig-nightly-bin";
+            version = index.master.version;
+
+            dontFixup = true;
+
+            unpackPhase = "tar xvf ${bundle}";
+            installPhase = ''
+            mkdir $out
+            cp -r zig-*/* $out
+
+            mkdir $out/bin
+            ln -s $out/zig $out/bin/zig
+            '';
+          };
+
           zig-nightly = llvmPackages.stdenv.mkDerivation rec {
             pname = "zig";
             version = "6d679eb2bcbe76e389c02e0bb4d4c4feb2847783";
