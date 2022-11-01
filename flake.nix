@@ -36,13 +36,13 @@
 
           zig-nightly = llvmPackages.stdenv.mkDerivation rec {
             pname = "zig";
-            version = "a5c96c49d0eedbce40ad9a58d1b236f1eaeabd03";
+            version = "0bbb000359107e25dccf2411ea7bea7f5cf52684";
 
             src = pkgs.fetchFromGitHub {
               owner = "ziglang";
               repo = pname;
               rev = version;
-              hash = "sha256-+7OsxcIIkvsYImi82mI/UiCAGYimElPj2m2rsMlFWOQ=";
+              hash = "sha256-EYHACGkI+983toZ2jC7vurI2REn9r+41GiqAgW8Pdxc=";
             };
 
             # https://github.com/ziglang/zig/issues/12069 workaround
